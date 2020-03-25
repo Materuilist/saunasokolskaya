@@ -1,0 +1,9 @@
+.Photo{
+    height: 100%;
+    transition: all .3s ease-out;
+}
+
+.Photo img{
+    width: 100%;
+    height: 100%;
+}

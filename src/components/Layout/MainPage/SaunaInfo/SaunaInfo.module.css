@@ -1,0 +1,7 @@
+.SaunaInfo{
+    width: 50%;
+    margin: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}

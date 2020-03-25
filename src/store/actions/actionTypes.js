@@ -1,0 +1,6 @@
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const SET_LOADING = 'SET_LOADING';
+export const UNSET_LOADING = 'UNSET_LOADING';
+export const RELOAD_FEEDBACK = 'RELOAD_FEEDBACK';
+export const SET_NEXT_PHOTO = 'SET_NEXT_PHOTO';
+export const SET_PREVIOUS_PHOTO = 'SET_PREVIOUS_PHOTO';

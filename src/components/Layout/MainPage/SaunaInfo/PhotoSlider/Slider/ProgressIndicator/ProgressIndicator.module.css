@@ -1,0 +1,11 @@
+.ProgressIndicatorContainer{
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+}
+
+.ProgressIndicator{
+    display: flex;
+    width: fit-content;
+    margin:auto;
+}

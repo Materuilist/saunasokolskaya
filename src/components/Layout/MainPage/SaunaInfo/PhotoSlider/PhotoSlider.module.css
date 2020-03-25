@@ -1,0 +1,28 @@
+.PhotoSlider{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.Arrow{
+    position: absolute;
+    top: 45%;
+    font-size: 30px;
+    color: bisque;
+    cursor: pointer;
+    z-index: 500;
+    transition: color .3s ease-out;
+}
+
+.Arrow:hover{
+    color: #eca13a;
+
+}
+
+.Left{
+    left: 5%;
+}
+
+.Right{
+    right: 5%;
+}
