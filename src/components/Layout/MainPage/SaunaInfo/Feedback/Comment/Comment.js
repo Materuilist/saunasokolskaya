@@ -1,10 +1,15 @@
 import React from 'react';
 
-export default function Comment({rate, comment}){
+import cssClasses from './Comment.module.css';
+
+export default function Comment({rate, comment, user}){
     return(
-        <div>
-            <h1>{rate}</h1>
-            <textarea value={comment}/>
+        <div className={cssClasses.Comment}>
+            <div className={cssClasses.CommentHeader}>
+                <div className={cssClasses.Author}>{user}</div>
+                <div className={cssClasses.Mark}>{rate}</div>
+            </div>
+            <textarea contentEditable={false} value={comment}/>
         </div>
     )
 }

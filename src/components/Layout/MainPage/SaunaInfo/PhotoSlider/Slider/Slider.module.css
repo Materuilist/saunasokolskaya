@@ -8,7 +8,6 @@
 .PhotosContainer{
     overflow: hidden;
     height: 100%;
-    border: .6px solid rgb(184, 92, 27);
     display: flex;
     flex-wrap: nowrap;
     transition: margin-left .3s ease-out;

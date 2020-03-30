@@ -19,7 +19,7 @@ export default class NavIcon extends React.Component {
           }}
         >
           <div className={cssClasses.SideBar}>
-              <Nav {...this.props}/>
+              <Nav routeChanged={this.props.navIconClickedHandler} {...this.props}/>
           </div>
         </CSSTransition>
         <CSSTransition

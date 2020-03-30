@@ -1,0 +1,45 @@
+:global .form-container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+:global textarea{
+    resize: none;
+}
+
+:global select{
+    cursor: pointer;
+}
+
+:global form{
+    background-color: #7851a9;
+    width: 40%;
+    margin: 0 auto;
+    padding: 2.5% 7%;
+    border-radius: 5%;
+}
+
+:global .form-item{
+    width: 90%;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 3%;
+    border: .9px solid #fcd093;
+    color: #eca13a;
+    padding: 7%;
+    outline: none;
+    transition: all .3s ease-out;
+}
+
+:global .form-item:hover{
+    color: #7851a9;
+    background-color: #fcd093;
+    transform: scale(1.1, 1.1);
+}
+
+:global form button.form-item{
+    width: unset;
+    padding: 8% 9% 8% 8%;
+    border-radius: 10%;
+    cursor: pointer;
+}

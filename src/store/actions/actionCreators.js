@@ -4,7 +4,8 @@ import {
     UNSET_LOADING, 
     RELOAD_FEEDBACK, 
     SET_NEXT_PHOTO, 
-    SET_PREVIOUS_PHOTO
+    SET_PREVIOUS_PHOTO,
+    SET_AUTHENTICATED_STATUS
 } from './actionTypes';
 
 function setLoading(sauna){
@@ -36,7 +37,7 @@ function addCommentSync(postInfo){
 
 export function addComment(postInfo){
     return async function(dispatch){
-        const res = await fetch('http://localhost:8080', {
+        await fetch('http://localhost:8080', {
             method:'POST',
             body:JSON.stringify(postInfo),
             headers:{
@@ -77,3 +78,10 @@ export function setPreviousPhoto(sauna){
         sauna
     }
 };
+
+export function setAuthenticatedStatus(){
+    return{
+        type:SET_AUTHENTICATED_STATUS,
+        isAuth:localStorage.getItem('jwt')!==null
+    }
+}

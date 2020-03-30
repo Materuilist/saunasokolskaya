@@ -6,12 +6,12 @@ import cssClasses from './Nav.module.css'
 export default function Nav(props){
     return (
         <ul className={cssClasses.Nav}>
-            <NavLink to="/home">
+            <NavLink onClick={props.routeChanged} to="/home">
                 <li>
                     Фото
                 </li>
             </NavLink>
-            <NavLink to={`/home/feedback/${props.sauna}`}>
+            <NavLink onClick={props.routeChanged} to={`/home/feedback/${props.sauna}`}>
                 <li>
                     Отзывы
                 </li>

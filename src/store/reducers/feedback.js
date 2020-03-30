@@ -4,7 +4,8 @@ import {
     UNSET_LOADING, 
     RELOAD_FEEDBACK, 
     SET_NEXT_PHOTO, 
-    SET_PREVIOUS_PHOTO
+    SET_PREVIOUS_PHOTO,
+    SET_AUTHENTICATED_STATUS
 } from '../actions/actionTypes';
 import _ from 'lodash';
 
@@ -19,6 +20,7 @@ import photo6 from '../../images/secondSauna/xyafoYP59PI.jpg';
 //secondsauna
 
 const initialState = {
+    isAuth:false,
     backend:'http://localhost:8080',
     firstSauna:{
         feedback:{
@@ -95,6 +97,12 @@ export default function(prevState=initialState, action){
                 newState[action.sauna].photos.range.length-1:currentActiveIndex-1;
             newState[action.sauna].photos.activeIndex = newIndex;
             newState[action.sauna].photos.active = photos.range[newIndex];
+            return newState;
+        }
+
+        case SET_AUTHENTICATED_STATUS:{
+            let newState = _.cloneDeep(prevState);
+            newState.isAuth = action.isAuth;
             return newState;
         }
 

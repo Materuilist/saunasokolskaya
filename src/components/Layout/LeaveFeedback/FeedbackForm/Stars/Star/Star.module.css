@@ -1,0 +1,18 @@
+.StarContainer{
+    display: inline-block;
+    position: relative;
+}
+
+.Star{
+    font-size: 50px;
+    color:#eca13a;
+    line-height: .8;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.FilledStar{
+    position: absolute;
+    overflow: hidden;
+    color: #eca13a;
+}

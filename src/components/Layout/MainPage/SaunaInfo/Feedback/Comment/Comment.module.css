@@ -1,0 +1,33 @@
+.Comment{
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.Comment textarea{
+    resize: none;
+    margin: 0 auto;
+    display: block;
+    padding: 4% 4% 0 4%;
+    width: 100%;
+    border-radius: 3%;
+}
+
+.CommentHeader{
+    display: flex;
+    margin: 0 0 .7rem 0;
+}
+
+.Mark{
+    padding: 2% 4%;
+    border-radius: 50%;
+    border: .9px solid #eca13a;
+    width: fit-content;
+    color: #eca13a;
+    text-align: center;
+}
+
+.Author{
+    color: #eca13a;
+    margin-right: 1rem;
+    padding: 2% 0 0 0;
+}

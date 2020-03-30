@@ -1,12 +1,7 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
-
-import PhotoSlider from "./PhotoSlider/PhotoSlider";
-import Feedback from "./Feedback/Feedback";
 
 import cssClasses from "./SaunaInfo.module.css";
 import NavIcon from "../../../../hoc/NavIcon/NavIcon";
-import BackDrop from "../../../../hoc/BackDrop/BackDrop";
 import SaunaContentWithBackDrop from "./SaunaContent/SaunaContent";
 
 export default class SaunaInfo extends React.Component {

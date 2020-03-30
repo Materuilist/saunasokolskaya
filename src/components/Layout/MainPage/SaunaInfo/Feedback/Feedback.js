@@ -5,6 +5,9 @@ import Comment from './Comment/Comment';
 
 import { reloadFeedback } from '../../../../../store/actions/actionCreators';
 
+import cssClasses from './Feedback.module.css';
+import { NavLink } from 'react-router-dom';
+
 class Feedback extends React.Component{
 
     componentDidMount(){
@@ -13,14 +16,15 @@ class Feedback extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className={cssClasses.Feedback}>
                 <ul>
                     {
-                        this.props.feedback.map(({rate, comment})=>(
+                        this.props.feedback.map(({rate, comment, user})=>(
                             <li key={rate+comment}>
                                 <Comment
                                 rate={rate}
-                                comment={comment}/>
+                                comment={comment}
+                                user={user}/>
                             </li>
                         ))
                     }
