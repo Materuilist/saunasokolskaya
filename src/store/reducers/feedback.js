@@ -2,10 +2,11 @@ import {
     ADD_COMMENT, 
     SET_LOADING, 
     UNSET_LOADING, 
-    RELOAD_FEEDBACK, 
+    GET_FEEDBACK, 
     SET_NEXT_PHOTO, 
     SET_PREVIOUS_PHOTO,
-    SET_AUTHENTICATED_STATUS
+    TOGGLE_AUTHENTICATED_STATUS,
+    TOGGLE_ADMIN_STATUS
 } from '../actions/actionTypes';
 import _ from 'lodash';
 
@@ -20,12 +21,15 @@ import photo6 from '../../images/secondSauna/xyafoYP59PI.jpg';
 //secondsauna
 
 const initialState = {
+    isAdmin:false,
     isAuth:false,
     backend:'http://localhost:8080',
     firstSauna:{
         feedback:{
             loading:false,
-            comments:[]
+            comments:[],
+            nextPageExists:false,
+            page:0
         },
         photos:{
             range:[
@@ -38,7 +42,9 @@ const initialState = {
     secondSauna:{
         feedback:{
             loading:false,
-            comments:[]
+            comments:[],
+            nextPageExists:false,
+            page:0
         },
         photos:{
             range:[
@@ -70,9 +76,11 @@ export default function(prevState=initialState, action){
             return newState;
         }
     
-        case RELOAD_FEEDBACK:{
+        case GET_FEEDBACK:{
             let newState = _.cloneDeep(prevState);
             newState[action.sauna].feedback.comments = action.comments;
+            newState[action.sauna].feedback.nextPageExists = action.nextPageExists;
+            newState[action.sauna].feedback.page = action.page;
             return newState;
         }
 
@@ -100,9 +108,15 @@ export default function(prevState=initialState, action){
             return newState;
         }
 
-        case SET_AUTHENTICATED_STATUS:{
+        case TOGGLE_AUTHENTICATED_STATUS:{
             let newState = _.cloneDeep(prevState);
-            newState.isAuth = action.isAuth;
+            newState.isAuth = !prevState.isAuth;
+            return newState;
+        }
+        
+        case TOGGLE_ADMIN_STATUS:{
+            let newState = _.cloneDeep(prevState);
+            newState.isAdmin = !prevState.isAdmin;
             return newState;
         }
 

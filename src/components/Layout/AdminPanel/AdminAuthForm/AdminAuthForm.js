@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthStatus } from "../../../store/actions/actionCreators";
+import { setAdminStatus } from "../../../../store/actions/actionCreators";
 
-import ErrorMessage from "../../UI/ErrorMessage/ErrorMessage";
+import ErrorMessage from "../../../UI/ErrorMessage/ErrorMessage";
 
-import cssClasses from "./AuthenticationForm.module.css";
+import cssClasses from "./AdminAuthForm.module.css";
 
-class AuthenticationForm extends React.Component {
+class AdminAuthForm extends React.Component {
   state = {
     errorMessage: null,
     phoneInputValue: "8(9"
@@ -22,20 +22,20 @@ class AuthenticationForm extends React.Component {
     if (validatedPhone.length !== 11) {
       this.setState(() => ({ errorMessage: "Неверно введен номер телефона!" }));
     }
-    const res = await fetch(this.props.backend + "/authentication", {
+    const res = await fetch(this.props.backend + "/admin/authentication", {
       method: "POST",
       body: JSON.stringify({
-        name: event.target.name.value,
-        phone: validatedPhone
+        phone: validatedPhone,
+        password: event.target.password.value
       }),
       headers: {
         "Content-Type": "application/json"
       }
     });
     if (res.status === 200) {
-      const jwt = await res.json();
-      this.props.setAuthStatus(jwt);
-      this.props.authenticatedHandler(true);
+      const token = await res.json();
+      console.log(token);
+      this.props.setAdminStatus(token);
     } else {
       const { message } = await res.json();
       this.setState(prevState => ({
@@ -103,21 +103,15 @@ class AuthenticationForm extends React.Component {
 
   render() {
     return (
-      <div className={"form-container " + cssClasses.AuthenticationForm}>
+      <div className={"form-container " + cssClasses.AdminAuthForm}>
         {this.state.errorMessage ? (
           <ErrorMessage errorMessage={this.state.errorMessage} />
         ) : null}
         <form
           onSubmit={this.validateForm.bind(this)}
-          action="/authentication"
+          action="/admin/authentication"
           method="POST"
         >
-          <input
-            className={"form-item"}
-            type="text"
-            name="name"
-            placeholder="Ваше имя..."
-          />
           <input
             onKeyDown={this.phoneClearHandler.bind(this)}
             onInput={this.phoneInputHandler.bind(this)}
@@ -129,6 +123,12 @@ class AuthenticationForm extends React.Component {
             name="phone"
             required
           />
+          <input
+            type="password"
+            name="password"
+            required
+            className="form-item"
+          />
           <button className={"form-item"} type="submit">
             ОК
           </button>
@@ -138,12 +138,12 @@ class AuthenticationForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  backend: state.backend
-});
+const mapStateToProps = state=>({
+    backend:state.backend
+})
 
 const mapDispatchToProps = dispatch => ({
-  setAuthStatus: (token) => dispatch(setAuthStatus(token))
+  setAdminStatus: token => dispatch(setAdminStatus(token))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminAuthForm);

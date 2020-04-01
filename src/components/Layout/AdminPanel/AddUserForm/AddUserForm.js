@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthStatus } from "../../../store/actions/actionCreators";
 
-import ErrorMessage from "../../UI/ErrorMessage/ErrorMessage";
+import ErrorMessage from "../../../UI/ErrorMessage/ErrorMessage";
 
-import cssClasses from "./AuthenticationForm.module.css";
+import cssClasses from "./AddUserForm.module.css";
 
-class AuthenticationForm extends React.Component {
+class AddUserForm extends React.Component {
   state = {
     errorMessage: null,
     phoneInputValue: "8(9"
@@ -22,20 +21,20 @@ class AuthenticationForm extends React.Component {
     if (validatedPhone.length !== 11) {
       this.setState(() => ({ errorMessage: "Неверно введен номер телефона!" }));
     }
-    const res = await fetch(this.props.backend + "/authentication", {
+    const res = await fetch(this.props.backend + "/admin/add-user", {
       method: "POST",
       body: JSON.stringify({
-        name: event.target.name.value,
         phone: validatedPhone
       }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization':'Bearer:'+localStorage.getItem('ajwt')
       }
     });
-    if (res.status === 200) {
-      const jwt = await res.json();
-      this.props.setAuthStatus(jwt);
-      this.props.authenticatedHandler(true);
+    if (res.status === 201) {
+      const {message} = await res.json();
+      this.setState(()=>({phoneInputValue:'8(9', errorMessage:null}))
+      alert(message);
     } else {
       const { message } = await res.json();
       this.setState(prevState => ({
@@ -103,21 +102,15 @@ class AuthenticationForm extends React.Component {
 
   render() {
     return (
-      <div className={"form-container " + cssClasses.AuthenticationForm}>
+      <div className={"form-container " + cssClasses.AddUserForm}>
         {this.state.errorMessage ? (
           <ErrorMessage errorMessage={this.state.errorMessage} />
         ) : null}
         <form
           onSubmit={this.validateForm.bind(this)}
-          action="/authentication"
+          action="/admin/add-user"
           method="POST"
         >
-          <input
-            className={"form-item"}
-            type="text"
-            name="name"
-            placeholder="Ваше имя..."
-          />
           <input
             onKeyDown={this.phoneClearHandler.bind(this)}
             onInput={this.phoneInputHandler.bind(this)}
@@ -138,12 +131,8 @@ class AuthenticationForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  backend: state.backend
-});
+const mapStateToProps = state=>({
+    backend:state.backend
+})
 
-const mapDispatchToProps = dispatch => ({
-  setAuthStatus: (token) => dispatch(setAuthStatus(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationForm);
+export default connect(mapStateToProps)(AddUserForm);

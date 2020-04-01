@@ -1,0 +1,8 @@
+div.AdminAuthForm{
+    width: 40%;
+    margin: 1.5rem auto;
+}
+
+div.AdminAuthForm form{
+    padding: 2.5% 7%;
+}

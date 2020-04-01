@@ -1,6 +1,7 @@
 :global .form-container{
     width: 80%;
-    margin: 0 auto;
+    margin: 3.5rem auto;
+    padding: 0 4rem;
 }
 
 :global textarea{
@@ -13,9 +14,9 @@
 
 :global form{
     background-color: #7851a9;
-    width: 40%;
+    width: 100%;
     margin: 0 auto;
-    padding: 2.5% 7%;
+    padding: 2.5% 0;
     border-radius: 5%;
 }
 
@@ -38,7 +39,7 @@
 }
 
 :global form button.form-item{
-    width: unset;
+    width: fit-content;
     padding: 8% 9% 8% 8%;
     border-radius: 10%;
     cursor: pointer;

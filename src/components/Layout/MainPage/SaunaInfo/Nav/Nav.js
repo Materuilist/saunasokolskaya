@@ -1,21 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
 
-import cssClasses from './Nav.module.css'
+import cssClasses from "./Nav.module.css";
 
-export default function Nav(props){
-    return (
-        <ul className={cssClasses.Nav}>
-            <NavLink onClick={props.routeChanged} to="/home">
-                <li>
-                    Фото
-                </li>
-            </NavLink>
-            <NavLink onClick={props.routeChanged} to={`/home/feedback/${props.sauna}`}>
-                <li>
-                    Отзывы
-                </li>
-            </NavLink>
-        </ul>
-    )
+export default function Nav(props) {
+  return (
+    <ul className={cssClasses.Nav}>
+      <li onClick={()=>props.routeChangedHandler("photos")}>Фото</li>
+      <li onClick={()=>props.routeChangedHandler("feedback")}>Отзывы</li>
+    </ul>
+  );
 }

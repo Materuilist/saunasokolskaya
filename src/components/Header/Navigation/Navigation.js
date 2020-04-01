@@ -6,8 +6,7 @@ export default function Navigation(props) {
   const navItems = [
     { caption: "Главная", link: "/home" },
     { caption: "О нас", link: "/about" },
-    { caption: "Контакты", link: "/contacts" },
-    { caption: 'Оставить отзыв', link:'/leavefeedback'}
+    { caption: "Контакты", link: "/contacts" }
   ];
 
   return (

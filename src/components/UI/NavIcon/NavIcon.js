@@ -2,7 +2,7 @@ import React from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
 
 import cssClasses from "./NavIcon.module.css";
-import Nav from "../../components/Layout/MainPage/SaunaInfo/Nav/Nav";
+import Nav from "../../Layout/MainPage/SaunaInfo/Nav/Nav";
 
 export default class NavIcon extends React.Component {
   render() {
@@ -19,7 +19,7 @@ export default class NavIcon extends React.Component {
           }}
         >
           <div className={cssClasses.SideBar}>
-              <Nav routeChanged={this.props.navIconClickedHandler} {...this.props}/>
+              <Nav routeChangedHandler={this.props.routeChangedHandler} {...this.props}/>
           </div>
         </CSSTransition>
         <CSSTransition

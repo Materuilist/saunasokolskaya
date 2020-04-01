@@ -1,0 +1,8 @@
+div.AuthenticationForm{
+    margin: 3.5rem auto;
+    width: 100%;
+}
+
+div.AuthenticationForm form{
+    padding: 2.5% 7%;
+}

@@ -1,0 +1,27 @@
+.Modal {
+  z-index: 1000;
+  position: fixed;
+  border: .9px solid #eca13a;
+  width: 30%;
+  height: fit-content;
+  box-shadow: .7rem .7rem 1rem #7851a9;
+  border-radius: 5%;
+  background-color: #eca13a;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: all .3s ease-out;
+}
+
+.ModalEnter {
+  top: -200%;
+}
+.ModalEnterDone {
+  top:10%;
+}
+.ModalExit {
+  top: 10%;
+}
+.ModalExitDone {
+  top: -200%;
+}

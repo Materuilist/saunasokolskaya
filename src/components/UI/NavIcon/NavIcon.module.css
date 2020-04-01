@@ -33,7 +33,7 @@
   border-radius: 0 0 100% 100%;
   position: absolute;
   left: 5%;
-  z-index: 300;
+  z-index: 700;
   font-size: 0;
   transition: height .5s ease-out,
                 font-size .3s ease-out,

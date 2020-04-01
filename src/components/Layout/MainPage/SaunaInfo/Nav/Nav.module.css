@@ -1,9 +1,12 @@
 .Nav li{
     list-style: none;
     margin-bottom: .7rem;
+    cursor: pointer;
+    transition: opacity .3s ease-out, 
+                    text-decoration .3s ease-out;
 }
 
-.Nav a{
-    text-decoration: none;
-    color: bisque;
+.Nav li:hover{
+    text-decoration: underline;
+    opacity: .7;
 }
