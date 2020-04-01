@@ -3,6 +3,13 @@
     margin: 1.5rem auto 1rem auto;
 }
 
+.DeleteButton{
+    color:rgb(248, 10, 10);
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
 .Comment textarea{
     resize: none;
     margin: 0 auto;

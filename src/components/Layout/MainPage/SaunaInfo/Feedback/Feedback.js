@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 
 import Comment from "./Comment/Comment";
 
-import {
-  getFeedback
-} from "../../../../../store/actions/actionCreators";
+import { getFeedback } from "../../../../../store/actions/actionCreators";
 
 import cssClasses from "./Feedback.module.css";
 
@@ -22,6 +20,18 @@ class Feedback extends React.Component {
     }
   }
 
+  async deleteFeedbackClicked(id) {
+    const res = await fetch(this.props.backend + "/admin/" + id, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer:" + localStorage.getItem("ajwt")
+      }
+    });
+    if (res.status === 200) {
+      this.props.getFeedback(1, 2);
+    }
+  }
+
   render() {
     return (
       <div className={cssClasses.Feedback}>
@@ -33,9 +43,18 @@ class Feedback extends React.Component {
         </div>
         <div className={cssClasses.FeedbackBlock}>
           <ul>
-            {this.props.feedback.map(({ rate, comment, user }) => (
-              <li key={rate + comment}>
-                <Comment rate={rate} comment={comment} user={user} />
+            {this.props.feedback.map(({ rate, comment, _id, user }) => (
+              <li key={_id}>
+                <Comment
+                  deleteFeedbackClicked={this.deleteFeedbackClicked.bind(
+                    this,
+                    _id
+                  )}
+                  isAdmin={this.props.isAdmin}
+                  rate={rate}
+                  comment={comment}
+                  user={user}
+                />
               </li>
             ))}
           </ul>
@@ -88,7 +107,8 @@ const mapStateToProps = (state, ownProps) => ({
   page: state[ownProps.sauna].feedback.page,
   nextPageExists: state[ownProps.sauna].feedback.nextPageExists,
   backend: state.backend,
-  isAuth: state.isAuth
+  isAuth: state.isAuth,
+  isAdmin: state.isAdmin
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
